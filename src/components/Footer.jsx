@@ -9,11 +9,12 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">IA</span>
-              </div>
-              <span className="font-bold text-xl gradient-text">eBooks IA</span>
+            <div className="mb-4">
+              <img
+                src="/Untitled design - 2026-04-01T191221.045.png"
+                alt="MK Books"
+                className="h-12 w-auto object-contain"
+              />
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
               Democratizando o uso prático da IA para quem quer ganhar dinheiro, tempo e liberdade através de eBooks interativos e conteúdo premium.

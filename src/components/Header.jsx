@@ -18,14 +18,15 @@ const Header = () => {
   const isActive = (path) => location.pathname === path
 
   return (
-    <header className="fixed top-0 w-full z-50 glass-effect border-b border-white/10">
+    <header className="w-full z-50 border-b border-white/10 bg-black/18 shadow-[0_10px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl supports-[backdrop-filter]:bg-black/14">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">IA</span>
-            </div>
-            <span className="font-bold text-xl gradient-text">eBooks IA</span>
+        <div className="flex justify-between items-center h-16 md:h-16">
+          <Link to="/" className="flex items-center">
+            <img
+              src="/Untitled design - 2026-04-01T191221.045.png"
+              alt="MK Books"
+              className="h-11 w-auto object-contain"
+            />
           </Link>
 
           <div className="hidden md:flex items-center space-x-8">

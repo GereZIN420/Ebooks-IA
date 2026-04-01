@@ -4,12 +4,11 @@ import { motion } from 'framer-motion'
 import { Button } from '../components/ui/Button'
 import { Card, CardContent } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
+import ColorBends from '../components/ColorBends'
 import SEO from '../components/SEO'
 import {
   ArrowRight,
-  Zap,
   Bot,
-  Sparkles,
   Layout,
   MessageSquare,
   Search,
@@ -62,55 +61,115 @@ const Home = () => {
       />
 
       {/* 1. Hero Section - Pareto Style (Dark Roxo/Azul) */}
-      <section className="relative min-h-screen flex items-center pt-24 pb-16 px-6">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_70%)] pointer-events-none" />
-        <div className="container mx-auto max-w-7xl z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <div className="lg:w-1/2 text-left space-y-8">
-              <Badge className="bg-neon-purple/10 text-neon-purple border-neon-purple/20 px-4 py-1.5 text-sm font-medium tracking-wide">
-                CATÁLOGO COMPLETO DE IA
-              </Badge>
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent">
-                Catálogo completo <br /> de <span className="text-neon-purple">IA para empresas</span>
-              </h1>
-              <p className="text-lg md:text-xl text-white/60 max-w-xl leading-relaxed">
-                Uma plataforma com conteúdos de IA do básico ao avançado para sua empresa aprender, aplicar e crescer.
-              </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <Button asChild size="lg" className="bg-neon-purple hover:bg-neon-purple/90 text-white px-8 rounded-full h-14 text-base font-semibold">
+      <section className="relative flex min-h-screen items-center px-6 pb-16 pt-32 md:pt-36">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 hidden md:block opacity-85">
+            <ColorBends
+              rotation={45}
+              speed={0.45}
+              colors={['#5227FF', '#FF9FFC', '#7cff67']}
+              transparent
+              autoRotate={0.4}
+              scale={2.3}
+              frequency={1}
+              warpStrength={1}
+              mouseInfluence={0}
+              parallax={0.5}
+              noise={0.1}
+            />
+          </div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.28),transparent_52%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(5,5,5,0.92)_12%,rgba(5,5,5,0.72)_45%,rgba(5,5,5,0.88)_100%)]" />
+          <div className="absolute inset-y-0 left-0 hidden w-[48%] bg-[radial-gradient(circle_at_left,rgba(255,255,255,0.08),transparent_62%)] lg:block" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(124,255,103,0.14),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,159,252,0.16),transparent_30%)] md:hidden" />
+        </div>
+        <div className="container relative z-10 mx-auto max-w-7xl">
+          <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 xl:gap-16">
+            <div className="text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.08, ease: 'easeOut' }}
+                className="max-w-3xl"
+              >
+                <h1 className="text-4xl font-bold leading-[0.98] tracking-[-0.05em] text-white sm:text-5xl md:text-6xl xl:text-[4.85rem]">
+                  IA aplicada com
+                  <span className="block bg-[linear-gradient(90deg,#ffffff_0%,#f1b8ff_40%,#8e72ff_72%,#7cff67_100%)] bg-clip-text text-transparent">
+                    clareza, método e escala
+                  </span>
+                </h1>
+                <p className="mt-6 max-w-2xl text-base leading-8 text-white/68 md:text-xl">
+                  Acesse eBooks, guias e trilhas práticas para implementar IA no seu negócio sem depender de tentativa e erro.
+                </p>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.16, ease: 'easeOut' }}
+                className="mt-8 flex flex-wrap gap-3"
+              >
+                {['ChatGPT', 'Automação', 'Conteúdo', 'Vídeos', 'SEO', 'Vendas'].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-medium text-white/72 backdrop-blur-md"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.24, ease: 'easeOut' }}
+                className="mt-10 flex flex-wrap gap-4"
+              >
+                <Button asChild size="lg" className="h-14 rounded-full bg-neon-purple px-8 text-base font-semibold text-white hover:bg-neon-purple/90">
                   <Link to="/assinatura">CONHECER PLANOS</Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="border-white/10 hover:bg-white/5 text-white px-8 rounded-full h-14 text-base font-semibold">
+                <Button asChild variant="outline" size="lg" className="h-14 rounded-full border-white/12 bg-white/5 px-8 text-base font-semibold text-white hover:bg-white/8">
                   <Link to="/contato">FALAR COM ESPECIALISTA</Link>
                 </Button>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-8 pt-8 border-t border-white/5">
-                <div>
-                  <div className="text-2xl font-bold">100+</div>
-                  <div className="text-xs text-white/40 uppercase tracking-widest mt-1">Ebooks e Guias</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">Semanal</div>
-                  <div className="text-xs text-white/40 uppercase tracking-widest mt-1">Atualizações</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">4+</div>
-                  <div className="text-xs text-white/40 uppercase tracking-widest mt-1">Trilhas por Área</div>
-                </div>
-              </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 28 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.32, ease: 'easeOut' }}
+                className="mt-12 grid gap-4 border-t border-white/8 pt-8 sm:grid-cols-3"
+              >
+                {[
+                  { value: '100+', label: 'Ebooks e guias' },
+                  { value: 'Semanal', label: 'Atualizações novas' },
+                  { value: '4+', label: 'Trilhas por área' }
+                ].map((stat) => (
+                  <div key={stat.label} className="rounded-3xl border border-white/8 bg-white/[0.03] p-5 backdrop-blur-md">
+                    <div className="text-2xl font-bold text-white">{stat.value}</div>
+                    <div className="mt-2 text-xs uppercase tracking-[0.22em] text-white/42">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-            <div className="lg:w-1/2 relative">
-              <div className="absolute -inset-4 bg-neon-purple/20 blur-[100px] rounded-full pointer-events-none" />
-              <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 aspect-[4/3] flex items-center justify-center">
-                <video
-                  src="/videos/hero.mp4"
-                  poster="/thumbs/hero.jpg"
-                  className="w-full h-full object-contain p-3"
-                  controls
-                />
-                {/* Overlay Glow */}
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-              </div>
+            <div className="relative self-start lg:mt-1 xl:mt-2">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96, y: 24 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.85, delay: 0.1, ease: 'easeOut' }}
+                className="relative mx-auto max-w-[40rem]"
+              >
+                <div className="pointer-events-none absolute -top-10 right-10 h-28 w-28 rounded-full bg-[#7cff67]/20 blur-[80px]" />
+                <div className="pointer-events-none absolute -left-6 top-20 h-40 w-40 rounded-full bg-[#ff9ffc]/18 blur-[110px]" />
+                <div className="pointer-events-none absolute -bottom-6 right-1/4 h-44 w-44 rounded-full bg-[#5227FF]/30 blur-[110px]" />
+                <div className="relative overflow-hidden rounded-[1.85rem] border border-white/10 bg-white/[0.03] p-2.5 shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-sm">
+                  <div className="pointer-events-none absolute inset-x-0 top-0 h-16 rounded-t-[1.65rem] bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(255,255,255,0.02))]" />
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[1.45rem] rounded-t-[1.65rem] bg-black/35">
+                  <video
+                    src="/videos/hero.mp4"
+                    poster="/thumbs/hero.jpg"
+                    className="h-full w-full object-cover"
+                    controls
+                  />
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
