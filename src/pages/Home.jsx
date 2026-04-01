@@ -25,6 +25,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const CHECKOUT_URL = 'https://pay.hotmart.com/W104672909E?checkoutMode=10'
+
 const Home = () => {
   const containerRef = useRef()
   const [carouselIndex, setCarouselIndex] = useState(0)
@@ -124,7 +126,7 @@ const Home = () => {
                 className="mt-10 flex flex-wrap gap-4"
               >
                 <Button asChild size="lg" className="h-14 rounded-full bg-neon-purple px-8 text-base font-semibold text-white hover:bg-neon-purple/90">
-                  <Link to="/assinatura">CONHECER PLANOS</Link>
+                  <a href={CHECKOUT_URL}>CONHECER PLANOS</a>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="h-14 rounded-full border-white/12 bg-white/5 px-8 text-base font-semibold text-white hover:bg-white/8">
                   <Link to="/contato">FALAR COM ESPECIALISTA</Link>
@@ -269,9 +271,9 @@ const Home = () => {
               <p className="text-lg text-white/60 leading-relaxed">
                 Conteúdos organizados para você aprender, aplicar e escalar com IA.
               </p>
-              <Link to="/assinatura" className="inline-flex items-center text-blue-400 font-semibold hover:underline">
+              <a href={CHECKOUT_URL} className="inline-flex items-center text-blue-400 font-semibold hover:underline">
                 Conhecer nossos planos <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
+              </a>
             </div>
             <div className="lg:w-1/2 relative rounded-[36px] overflow-hidden border border-blue-500/20 bg-blue-900/10 aspect-video flex items-center justify-center">
               <img src="/section/section2.png" alt="Seção catálogo de eBooks" className="w-full h-full object-contain p-3" />
@@ -329,10 +331,10 @@ const Home = () => {
 
               <div className="flex flex-wrap gap-4">
                 <Button asChild size="lg" className="bg-neon-purple hover:bg-neon-purple/90 text-white rounded-full px-10 h-14 text-base">
-                  <Link to="/assinatura">Quero assinar a plataforma <ArrowRight className="w-5 h-5 ml-2" /></Link>
+                  <a href={CHECKOUT_URL}>Quero assinar a plataforma <ArrowRight className="w-5 h-5 ml-2" /></a>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-10 h-14 text-base">
-                  <Link to="/assinatura">Ver planos e benefícios</Link>
+                  <a href={CHECKOUT_URL}>Ver planos e benefícios</a>
                 </Button>
               </div>
             </div>
@@ -365,7 +367,7 @@ const Home = () => {
                 Do básico ao avançado: marketing, vendas, operações e produto com aplicação prática.
               </p>
               <Button asChild className="bg-neon-purple text-white rounded-full px-8">
-                <Link to="/assinatura">Conhecer Planos</Link>
+                <a href={CHECKOUT_URL}>Conhecer Planos</a>
               </Button>
             </div>
             <div className="lg:w-1/2 relative rounded-3xl overflow-hidden border border-neon-purple/20 bg-neon-purple/10 aspect-video flex items-center justify-center">
@@ -389,7 +391,7 @@ const Home = () => {
                 Conteúdos organizados e fáceis de entender para você usar IA e gerar resultados na sua empresa.
               </p>
               <Button asChild className="bg-neon-purple text-white rounded-full px-8">
-                <Link to="/assinatura">Conhecer Planos</Link>
+                <a href={CHECKOUT_URL}>Conhecer Planos</a>
               </Button>
             </div>
           </div>
@@ -511,7 +513,7 @@ const Home = () => {
           </p>
           <div className="pt-4">
             <Button asChild size="lg" className="bg-white text-black hover:bg-white/90 rounded-full px-12 h-16 text-lg font-bold">
-              <Link to="/assinatura">QUERO ACESSAR AGORA</Link>
+              <a href={CHECKOUT_URL}>QUERO ACESSAR AGORA</a>
             </Button>
           </div>
         </div>

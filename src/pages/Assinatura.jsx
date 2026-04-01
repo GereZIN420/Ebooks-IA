@@ -27,6 +27,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const CHECKOUT_URL = 'https://pay.hotmart.com/W104672909E?checkoutMode=10'
+
 const Assinatura = () => {
   const containerRef = useRef()
   const [selectedPlan, setSelectedPlan] = useState('anual')
@@ -295,10 +297,10 @@ const Assinatura = () => {
                         : 'bg-white/5 hover:bg-white/10 text-white border border-white/10'
                         }`}
                     >
-                      <Link to="/assinatura">
+                      <a href={CHECKOUT_URL}>
                         {plan.popular ? 'ASSINAR AGORA' : 'ESCOLHER PLANO'}
                         <ArrowRight className="w-5 h-5 ml-2" />
-                      </Link>
+                      </a>
                     </Button>
 
                     {plan.popular && (
@@ -390,7 +392,7 @@ const Assinatura = () => {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="bg-white text-black hover:bg-white/90 rounded-full px-12 h-16 text-lg font-black shadow-2xl">
-              <Link to="/assinatura">QUERO ACESSAR AGORA</Link>
+              <a href={CHECKOUT_URL}>QUERO ACESSAR AGORA</a>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-white/10 hover:bg-white/5 text-white px-12 h-16 text-lg font-bold rounded-full">
               <Link to="/contato">FALAR COM SUPORTE</Link>
