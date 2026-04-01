@@ -10,7 +10,6 @@ const Header = () => {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Biblioteca', href: '/biblioteca' },
     { name: 'Assinatura', href: '/assinatura' },
     { name: 'Sobre', href: '/sobre' },
     { name: 'Contato', href: '/contato' }
@@ -34,9 +33,8 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-sm font-medium transition-all duration-300 hover:text-blue-400 ${
-                  isActive(item.href) ? 'text-blue-400 neon-text' : 'text-gray-300'
-                }`}
+                className={`text-sm font-medium transition-all duration-300 hover:text-blue-400 ${isActive(item.href) ? 'text-blue-400 neon-text' : 'text-gray-300'
+                  }`}
               >
                 {item.name}
               </Link>
@@ -68,9 +66,8 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`px-3 py-2 text-base font-medium transition-all duration-300 hover:text-blue-400 ${
-                    isActive(item.href) ? 'text-blue-400 neon-text' : 'text-gray-300'
-                  }`}
+                  className={`px-3 py-2 text-base font-medium transition-all duration-300 hover:text-blue-400 ${isActive(item.href) ? 'text-blue-400 neon-text' : 'text-gray-300'
+                    }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}

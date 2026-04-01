@@ -4,11 +4,11 @@ import { motion } from 'framer-motion'
 import { Button } from '../components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
-import { 
-  BookOpen, 
-  Play, 
-  Download, 
-  CheckCircle, 
+import {
+  BookOpen,
+  Play,
+  Download,
+  CheckCircle,
   Star,
   Clock,
   Users,
@@ -314,7 +314,7 @@ const EbookTemplate = () => {
       const scrolled = window.scrollY
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight
       progress = (scrolled / maxScroll) * 100
-      
+
       if (progressBarRef.current) {
         progressBarRef.current.style.width = `${progress}%`
       }
@@ -362,7 +362,7 @@ const EbookTemplate = () => {
         <div className="text-center">
           <h1 className="text-3xl font-bold text-white mb-4">eBook não encontrado</h1>
           <Button asChild>
-            <a href="/biblioteca">Voltar à Biblioteca</a>
+            <a href="/">Voltar para Home</a>
           </Button>
         </div>
       </div>
@@ -409,11 +409,11 @@ const EbookTemplate = () => {
                   Atualizado com as últimas ferramentas de IA
                 </Badge>
               </div>
-              
+
               <h1 className="text-4xl md:text-6xl font-bold gradient-text mb-4 leading-tight">
                 {ebook.title}
               </h1>
-              
+
               <p className="text-xl text-gray-300 mb-8 leading-relaxed">
                 {ebook.subtitle}
               </p>

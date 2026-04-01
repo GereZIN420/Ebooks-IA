@@ -6,7 +6,6 @@ import WhatsAppButton from './components/WhatsAppButton'
 
 // Pages
 import Home from './pages/Home'
-import Biblioteca from './pages/Biblioteca'
 import EbookTemplate from './pages/EbookTemplate'
 import VideosIA from './pages/VideosIA'
 import Assinatura from './pages/Assinatura'
@@ -21,11 +20,10 @@ function App() {
       <Router>
         <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900/20 to-purple-900/20">
           <Header />
-          
+
           <main className="min-h-screen">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/biblioteca" element={<Biblioteca />} />
               <Route path="/ebook/:slug" element={<EbookTemplate />} />
               <Route path="/ebook/videos-profissionais-com-ia" element={<VideosIA />} />
               <Route path="/assinatura" element={<Assinatura />} />

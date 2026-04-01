@@ -5,7 +5,7 @@ import { Button } from '../components/ui/Button'
 import { Card, CardContent } from '../components/ui/Card'
 import { Badge } from '../components/ui/Badge'
 import SEO from '../components/SEO'
-import { 
+import {
   ArrowRight,
   Zap,
   Bot,
@@ -16,8 +16,11 @@ import {
   FileText,
   Share2,
   Image as ImageIcon,
-  Linkedin
+  Linkedin,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react'
+import { AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -30,11 +33,11 @@ const Home = () => {
   useEffect(() => {
     // Reveal animations for sections
     gsap.utils.toArray('.reveal-section').forEach((section) => {
-      gsap.fromTo(section, 
+      gsap.fromTo(section,
         { opacity: 0, y: 30 },
         {
-          opacity: 1, 
-          y: 0, 
+          opacity: 1,
+          y: 0,
           duration: 1,
           scrollTrigger: {
             trigger: section,
@@ -53,7 +56,7 @@ const Home = () => {
 
   return (
     <div ref={containerRef} className="bg-[#050505] text-white overflow-x-hidden selection:bg-neon-purple/30">
-      <SEO 
+      <SEO
         description="Catálogo completo de conteúdos de IA para empresas. Aprenda do básico ao avançado e aplique na prática."
         url="/"
       />
@@ -74,11 +77,11 @@ const Home = () => {
                 Uma plataforma com conteúdos de IA do básico ao avançado para sua empresa aprender, aplicar e crescer.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
-                <Button size="lg" className="bg-neon-purple hover:bg-neon-purple/90 text-white px-8 rounded-full h-14 text-base font-semibold">
-                  VER CATÁLOGO DE EBOOKS
+                <Button asChild size="lg" className="bg-neon-purple hover:bg-neon-purple/90 text-white px-8 rounded-full h-14 text-base font-semibold">
+                  <Link to="/assinatura">CONHECER PLANOS</Link>
                 </Button>
-                <Button variant="outline" size="lg" className="border-white/10 hover:bg-white/5 text-white px-8 rounded-full h-14 text-base font-semibold">
-                  FALAR COM ESPECIALISTA
+                <Button asChild variant="outline" size="lg" className="border-white/10 hover:bg-white/5 text-white px-8 rounded-full h-14 text-base font-semibold">
+                  <Link to="/contato">FALAR COM ESPECIALISTA</Link>
                 </Button>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-8 pt-8 border-t border-white/5">
@@ -120,39 +123,80 @@ const Home = () => {
             <h2 className="text-3xl md:text-4xl font-bold">O conhecimento que transforma IA em resultado</h2>
             <p className="text-white/60 mt-3">Veja exemplos de eBooks exclusivos do nosso catálogo.</p>
           </div>
-          {(() => {
-            const cards = [
-              { title: 'IA na Prática: Automação Total para Empresas', image: '/ebooks/ebook1.png' },
-              { title: 'Chatbots que Vendem: Atendimento e Vendas com IA', image: '/ebooks/ebook2.png' },
-              { title: 'Design e Criativos com IA: Imagens, Anúncios e Identidade', image: '/ebooks/ebook3.png' },
-              { title: 'Criação de Conteúdo com IA: Produção Automática para Escalar', image: '/ebooks/ebook4.png' },
-              { title: 'Vídeos com IA: Scripts, Edição e Escala de Conteúdo', image: '/ebooks/ebook5.png' },
-              { title: 'Marketing 10x: Conteúdo, SEO e Tráfego com IA', image: '/ebooks/ebook6.png' }
-            ]
-            const totalPages = Math.ceil(cards.length / 3)
-            const start = (carouselIndex % totalPages) * 3
-            const visible = cards.slice(start, start + 3)
-            return (
-              <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                  {visible.map((card, i) => (
-                    <div key={i} className="group relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 transition-all hover:border-white/20">
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10" />
-                      <img src={card.image} alt={card.title} className="w-full h-[420px] object-cover" />
-                      <div className="absolute bottom-6 left-6 right-6 z-20">
-                        <h3 className="text-sm font-semibold leading-snug">{card.title}</h3>
+          <div className="relative group">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={carouselIndex}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+              >
+                {(() => {
+                  const cards = [
+                    { title: 'IA na Prática: Automação Total para Empresas', image: '/ebooks/ebook1.png' },
+                    { title: 'Chatbots que Vendem: Atendimento e Vendas com IA', image: '/ebooks/ebook2.png' },
+                    { title: 'Design e Criativos com IA: Imagens, Anúncios e Identidade', image: '/ebooks/ebook3.png' },
+                    { title: 'Criação de Conteúdo com IA: Produção Automática para Escalar', image: '/ebooks/ebook4.png' },
+                    { title: 'Vídeos com IA: Scripts, Edição e Escala de Conteúdo', image: '/ebooks/ebook5.png' },
+                    { title: 'Marketing 10x: Conteúdo, SEO e Tráfego com IA', image: '/ebooks/ebook6.png' }
+                  ]
+                  const totalPages = Math.ceil(cards.length / 3)
+                  const start = (carouselIndex % totalPages) * 3
+                  return cards.slice(start, start + 3).map((card, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ y: -10, scale: 1.02 }}
+                      className="group relative rounded-[2rem] overflow-hidden border border-white/10 bg-gradient-to-b from-white/5 to-transparent backdrop-blur-sm transition-all hover:border-neon-purple/50 hover:shadow-[0_20px_50px_rgba(139,92,246,0.15)]"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-black/20 to-black/90 z-10 opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="aspect-[3/4] overflow-hidden">
+                        <img
+                          src={card.image}
+                          alt={card.title}
+                          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                        />
                       </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center justify-center gap-2 mt-8">
-                  {Array.from({ length: totalPages }).map((_, i) => (
-                    <span key={i} className={`w-2.5 h-2.5 rounded-full ${i === (carouselIndex % totalPages) ? 'bg-white' : 'bg-white/20'}`} />
-                  ))}
-                </div>
-              </>
-            )
-          })()}
+                      <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
+                        <div className="h-0.5 w-12 bg-neon-purple mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                        <h3 className="text-lg font-bold leading-tight text-white group-hover:text-neon-purple transition-colors duration-300">
+                          {card.title}
+                        </h3>
+                      </div>
+                    </motion.div>
+                  ))
+                })()}
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Navigation Buttons */}
+            <button
+              onClick={() => setCarouselIndex(prev => (prev - 1 + 2) % 2)}
+              className="absolute left-[-2rem] top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-neon-purple hover:text-white hover:border-neon-purple transition-all opacity-0 group-hover:opacity-100 hidden lg:flex"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={() => setCarouselIndex(prev => (prev + 1) % 2)}
+              className="absolute right-[-2rem] top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:bg-neon-purple hover:text-white hover:border-neon-purple transition-all opacity-0 group-hover:opacity-100 hidden lg:flex"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 mt-12">
+            {[0, 1].map((i) => (
+              <button
+                key={i}
+                onClick={() => setCarouselIndex(i)}
+                className={`transition-all duration-500 rounded-full ${i === carouselIndex
+                  ? 'w-8 h-2.5 bg-neon-purple'
+                  : 'w-2.5 h-2.5 bg-white/20 hover:bg-white/40'
+                  }`}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -166,8 +210,8 @@ const Home = () => {
               <p className="text-lg text-white/60 leading-relaxed">
                 Conteúdos organizados para você aprender, aplicar e escalar com IA.
               </p>
-              <Link to="/biblioteca" className="inline-flex items-center text-blue-400 font-semibold hover:underline">
-                Ver biblioteca completa <ArrowRight className="ml-2 w-4 h-4" />
+              <Link to="/assinatura" className="inline-flex items-center text-blue-400 font-semibold hover:underline">
+                Conhecer nossos planos <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
             </div>
             <div className="lg:w-1/2 relative rounded-[36px] overflow-hidden border border-blue-500/20 bg-blue-900/10 aspect-video flex items-center justify-center">
@@ -211,81 +255,43 @@ const Home = () => {
       {/* 4.5 Oferta de Acesso (entre catálogo e plataforma) */}
       <section className="reveal-section py-20 px-6 bg-gradient-to-b from-[#06060a] via-[#090812] to-[#07070b] border-y border-white/5">
         <div className="container mx-auto max-w-7xl">
-          <div className="text-center max-w-4xl mx-auto mb-12">
-            <Badge className="bg-neon-purple/10 text-neon-purple border-neon-purple/20 px-4 py-1.5">OFERTA DOS EBOOKS</Badge>
-            <h2 className="text-3xl md:text-5xl font-bold mt-5 leading-tight">
-              Acesso completo à plataforma <span className="text-neon-purple">ou compra avulsa</span>
-            </h2>
-            <p className="text-white/60 mt-4 text-base md:text-lg leading-relaxed">
-              Você pode assinar no plano mensal ou anual e liberar todos os eBooks com atualizações semanais exclusivas.
-              Se preferir, também pode conferir o catálogo e comprar conteúdos separadamente.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-6">
-            <Card className="lg:col-span-2 p-0 border border-neon-purple/25 bg-gradient-to-br from-neon-purple/10 via-[#121020] to-[#0a0a11]">
-              <CardContent className="p-8 md:p-10">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                  <div>
-                    <div className="inline-flex items-center gap-2 text-neon-purple text-sm font-semibold tracking-wide uppercase">
-                      <Sparkles className="w-4 h-4" />
-                      Oferta principal
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold mt-2">Plataforma Completa de eBooks IA</h3>
-                    <p className="text-white/65 mt-3 leading-relaxed">
-                      Melhor escolha para quem quer evolução contínua: acesso total, novos materiais toda semana e liberdade para estudar por trilhas.
-                    </p>
-                  </div>
-                  <Badge className="bg-neon-purple text-white border-neon-purple/40 h-fit">FOCO: PLANO MENSAL OU ANUAL</Badge>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-4 mt-8">
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                    <p className="text-xs uppercase tracking-widest text-white/50 mb-2">Assinatura mensal</p>
-                    <p className="text-white/80 text-sm">Entre agora com menor investimento inicial e cancele quando quiser.</p>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                    <p className="text-xs uppercase tracking-widest text-white/50 mb-2">Assinatura anual</p>
-                    <p className="text-white/80 text-sm">Maior economia e acesso contínuo para implementar IA no longo prazo.</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3 mt-8">
-                  <Button className="bg-neon-purple hover:bg-neon-purple/90 text-white rounded-full px-8">
-                    Quero assinar a plataforma <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                  <Button variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-8">
-                    Ver planos e benefícios
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="p-0 border border-white/10 bg-[#0a0a11]">
-              <CardContent className="p-8">
-                <div className="inline-flex items-center gap-2 text-white/80 text-sm font-semibold">
-                  <Zap className="w-4 h-4 text-neon-blue" />
-                  Opção alternativa
-                </div>
-                <h3 className="text-xl font-bold mt-3">Compra avulsa no catálogo</h3>
-                <p className="text-white/60 mt-3 leading-relaxed">
-                  Precisa de algo específico agora? Você também pode comprar eBooks separados por tema e necessidade.
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="lg:w-[60%] w-full">
+              <div className="text-left mb-8 flex flex-col items-start px-0">
+                <Badge className="bg-neon-purple/10 text-neon-purple border-neon-purple/20 px-4 py-1.5">OFERTA DOS EBOOKS</Badge>
+                <h2 className="text-2xl md:text-4xl font-bold mt-5 leading-tight">
+                  Acesso completo à plataforma <span className="text-neon-purple">ou compra avulsa</span>
+                </h2>
+                <p className="text-white/60 mt-4 text-sm md:text-base leading-relaxed max-w-2xl">
+                  Você pode assinar no plano mensal ou anual e liberar todos os eBooks com atualizações semanais exclusivas.
+                  Se preferir, também pode conferir o catálogo e comprar conteúdos separadamente.
                 </p>
-                <ul className="mt-5 space-y-2 text-sm text-white/70 list-disc list-inside">
-                  <li>Escolha somente os conteúdos que precisa no momento</li>
-                  <li>Acesso individual por eBook adquirido</li>
-                  <li>Ideal para demandas pontuais</li>
-                </ul>
-                <Button variant="secondary" className="w-full mt-6 rounded-full">
-                  Explorar catálogo avulso
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
 
-          <p className="text-center text-white/50 text-sm mt-8">
-            Recomendação: para ter todos os conteúdos + atualizações semanais exclusivas, a assinatura da plataforma é o melhor custo-benefício.
-          </p>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg" className="bg-neon-purple hover:bg-neon-purple/90 text-white rounded-full px-10 h-14 text-base">
+                  <Link to="/assinatura">Quero assinar a plataforma <ArrowRight className="w-5 h-5 ml-2" /></Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-white/20 text-white hover:bg-white/5 rounded-full px-10 h-14 text-base">
+                  <Link to="/assinatura">Ver planos e benefícios</Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="lg:w-[40%] flex justify-center items-center">
+              <div className="relative group w-full scale-[1.1]">
+                <div className="absolute -inset-20 bg-gradient-to-r from-neon-purple/20 to-neon-blue/10 rounded-full blur-[120px] opacity-60 pointer-events-none"></div>
+                <video
+                  src="/videos/Capivara%20Lendo.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="relative w-full h-auto rounded-3xl border border-white/10 shadow-2xl object-contain drop-shadow-[0_0_50px_rgba(139,92,246,0.2)]"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -299,7 +305,9 @@ const Home = () => {
               <p className="text-lg text-white/60 leading-relaxed">
                 Do básico ao avançado: marketing, vendas, operações e produto com aplicação prática.
               </p>
-              <Button className="bg-neon-purple text-white rounded-full px-8">Ver Catálogo de Ebooks</Button>
+              <Button asChild className="bg-neon-purple text-white rounded-full px-8">
+                <Link to="/assinatura">Conhecer Planos</Link>
+              </Button>
             </div>
             <div className="lg:w-1/2 relative rounded-3xl overflow-hidden border border-neon-purple/20 bg-neon-purple/10 aspect-video flex items-center justify-center">
               <img src="/section/section3.png" alt="Imagem seção plataforma" className="w-full h-full object-contain p-3" />
@@ -321,13 +329,15 @@ const Home = () => {
               <p className="text-lg text-white/60 leading-relaxed">
                 Conteúdos organizados e fáceis de entender para você usar IA e gerar resultados na sua empresa.
               </p>
-              <Button className="bg-neon-purple text-white rounded-full px-8">Ver Catálogo de Ebooks</Button>
+              <Button asChild className="bg-neon-purple text-white rounded-full px-8">
+                <Link to="/assinatura">Conhecer Planos</Link>
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-            {/* 5.8 Logos IA */}
+      {/* 5.8 Logos IA */}
       <section className="reveal-section py-24 px-6 border-y border-white/5">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-9">
@@ -421,12 +431,12 @@ const Home = () => {
       <section className="reveal-section py-20 border-y border-white/5">
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap justify-center items-center gap-12 grayscale opacity-30 hover:opacity-50 transition-opacity">
-             <div className="text-xl font-bold tracking-tighter">HOTMART</div>
-             <div className="text-xl font-bold tracking-tighter">KIWIFY</div>
-             <div className="text-xl font-bold tracking-tighter">GOOGLE ADS</div>
-             <div className="text-xl font-bold tracking-tighter">META PARTNER</div>
-             <div className="text-xl font-bold tracking-tighter">PERPLEXITY</div>
-             <div className="text-xl font-bold tracking-tighter">STRIPE</div>
+            <div className="text-xl font-bold tracking-tighter">HOTMART</div>
+            <div className="text-xl font-bold tracking-tighter">KIWIFY</div>
+            <div className="text-xl font-bold tracking-tighter">GOOGLE ADS</div>
+            <div className="text-xl font-bold tracking-tighter">META PARTNER</div>
+            <div className="text-xl font-bold tracking-tighter">PERPLEXITY</div>
+            <div className="text-xl font-bold tracking-tighter">STRIPE</div>
           </div>
         </div>
       </section>
@@ -441,9 +451,9 @@ const Home = () => {
             Aprenda tudo sobre IA e implemente na sua empresa com conteúdo prático e atualizado.
           </p>
           <div className="pt-4">
-             <Button size="lg" className="bg-white text-black hover:bg-white/90 rounded-full px-12 h-16 text-lg font-bold">
-               VER CATÁLOGO DE EBOOKS
-             </Button>
+            <Button asChild size="lg" className="bg-white text-black hover:bg-white/90 rounded-full px-12 h-16 text-lg font-bold">
+              <Link to="/assinatura">QUERO ACESSAR AGORA</Link>
+            </Button>
           </div>
         </div>
       </section>
